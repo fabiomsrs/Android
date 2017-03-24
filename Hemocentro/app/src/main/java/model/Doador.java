@@ -67,6 +67,9 @@ public class Doador extends SugarRecord{
 		e.setBolsas(qtdBolsa, this.tipoSanguineo);		
 		//doacao.save();
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Nome: "+this.nome + "\nTipo: " + this.tipoSanguineo + "\nGenero: " + this.sexo;
+	}
 }
