@@ -10,8 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
-        <meta-data android:name="VERSION" android:value="9"/>
-        <meta-data android:name="QUERY_LOG" android:value="true"/>
         <activity android:name=".HemocentroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,10 +17,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FormDoador"
+        <activity
+            android:name=".FormDoador"
             android:label="Formulario"
-            android:parentActivityName=".HemocentroActivity">
-        </activity>
+            android:parentActivityName=".HemocentroActivity" />
+        <activity
+            android:name=".BancoDeSangue"
+            android:label="Banco de Sangue"
+            android:parentActivityName=".HemocentroActivity" />
+        <activity android:name=".Rank"
+            android:label="Rank de Doadores"
+            android:parentActivityName=".HemocentroActivity"></activity>
     </application>
 
 </manifest>

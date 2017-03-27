@@ -10,13 +10,15 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import model.Doador;
+import com.example.fabiano.hemocentro.model.Doador;
+import com.example.fabiano.hemocentro.model.Hemocentro;
 
 public class FormDoador extends AppCompatActivity {
     private EditText nome;
     private EditText hospitalDestino;
     private EditText telefone;
     private Spinner tipoSanguineo;
+    private EditText qtdBolsas;
     private String genero;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class FormDoador extends AppCompatActivity {
         hospitalDestino = (EditText) findViewById(R.id.hospitalDestino);
         telefone = (EditText) findViewById(R.id.telefone);
         tipoSanguineo = (Spinner) findViewById(R.id.spinnerTipoSanguineo);
+        qtdBolsas = (EditText) findViewById(R.id.bolsa);
     }
 
     @Override
@@ -37,18 +40,25 @@ public class FormDoador extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Doador doador;
         if(item.getItemId() == R.id.save){
             String stringNome = nome.getText().toString();
             String stringTipoSaguineo = tipoSanguineo.getSelectedItem().toString();
             String stringTelefone = telefone.getText().toString();
             String stringHospitalDestino = hospitalDestino.getText().toString();
-            Doador doador = new Doador(stringNome,genero,stringTipoSaguineo,stringTelefone);
-
-            if(!stringHospitalDestino.equals("")){
-                doador.setDoacao(10,stringHospitalDestino);
+            int intBolsa = 0;
+            try {
+                intBolsa = Integer.parseInt(qtdBolsas.getText().toString());
+            }catch (ClassCastException e){
+                Toast.makeText(this,"Numero de bolsas deve ser inteiro",Toast.LENGTH_LONG).show();
             }
 
-            Toast.makeText(this,"" + doador,Toast.LENGTH_LONG).show();
+            Hemocentro hemocentro = Hemocentro.getInstance();
+            doador = hemocentro.cadastroDoador(stringNome,genero,stringTipoSaguineo,stringTelefone,intBolsa,stringHospitalDestino);
+            doador.save();
+
+            Toast.makeText(this,"Cadastrado com sucesso",Toast.LENGTH_LONG).show();
+
         }
         return super.onOptionsItemSelected(item);
     }

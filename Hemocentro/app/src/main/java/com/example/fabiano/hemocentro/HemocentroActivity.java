@@ -6,43 +6,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import meuAdapter.CustomAdapter;
-import model.Doador;
+import com.example.fabiano.hemocentro.meuAdapter.CustomAdapterDoador;
+import com.example.fabiano.hemocentro.model.Bolsa;
+import com.example.fabiano.hemocentro.model.Doador;
 
 public class HemocentroActivity extends AppCompatActivity {
     private FloatingActionButton button;
-    private List<Doador> lista = new ArrayList<>();
+    private List<Doador> lista;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hemocentro);
         button = (FloatingActionButton) findViewById(R.id.floatbutton);
 
-        Doador doador = new Doador("test","test","test","test");
-
-        lista.add(doador);
-        lista.add(doador);
-        lista.add(doador);
-        lista.add(doador);
-        lista.add(doador);
-        lista.add(doador);
-        lista.add(doador);
-        lista.add(doador);
-        lista.add(doador);
-        lista.add(doador);
-        lista.add(doador);
-        lista.add(doador);
+        lista = Doador.listAll(Doador.class);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler);
-        CustomAdapter adapter = new CustomAdapter(lista);
+        CustomAdapterDoador adapter = new CustomAdapterDoador(this,lista);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -54,8 +42,24 @@ public class HemocentroActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.bancoDeSangue){
+            Intent intent = new Intent(this,BancoDeSangue.class);
+            startActivity(intent);
+        }
+        else if(item.getItemId() == R.id.rank){
+            Intent intent = new Intent(this,Rank.class);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     public void floatButtonListener(View view){
         Intent intent = new Intent(this,FormDoador.class);
+        List<Bolsa> test = Bolsa.listAll(Bolsa.class);
+
         startActivity(intent);
     }
 

@@ -9,4 +9,8 @@
         android:title="Rank"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/bancoDeSangue"
+        android:title="Banco de Sangue"
+        app:showAsAction="never" />
+
 </menu>
