@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.fabiano.hemocentro.meuAdapter.CustomAdapterDoador;
 import com.example.fabiano.hemocentro.model.Doador;
 import com.example.fabiano.hemocentro.model.Hemocentro;
 
@@ -47,8 +48,7 @@ public class FormDoador extends AppCompatActivity {
             String stringTelefone = telefone.getText().toString();
             String stringHospitalDestino = hospitalDestino.getText().toString();
             int intBolsa = Integer.parseInt(qtdBolsas.getText().toString());
-        
-            Toast.makeText(this,"Numero de bolsas deve ser inteiro",Toast.LENGTH_LONG).show();
+
 
 
             Hemocentro hemocentro = Hemocentro.getInstance();
@@ -56,7 +56,6 @@ public class FormDoador extends AppCompatActivity {
             doador.save();
 
             Toast.makeText(this,"Cadastrado com sucesso",Toast.LENGTH_LONG).show();
-
         }
         return super.onOptionsItemSelected(item);
     }

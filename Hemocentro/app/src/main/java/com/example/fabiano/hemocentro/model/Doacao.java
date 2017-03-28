@@ -23,7 +23,7 @@ public class Doacao extends SugarRecord{
 		bolsa.save();
 	}
 
-	public Bolsa getBolsas(){
+	public Bolsa getBolsa(){
 		return this.bolsa;
 	}
 	public Calendar getData(){

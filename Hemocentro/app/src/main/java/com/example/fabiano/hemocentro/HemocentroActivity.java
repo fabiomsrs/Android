@@ -26,7 +26,6 @@ public class HemocentroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hemocentro);
         button = (FloatingActionButton) findViewById(R.id.floatbutton);
-
         lista = Doador.listAll(Doador.class);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler);

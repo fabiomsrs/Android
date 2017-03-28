@@ -1,11 +1,9 @@
 package com.example.fabiano.hemocentro;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import com.example.fabiano.hemocentro.meuAdapter.CustomAdapterRankDoador;
 import com.example.fabiano.hemocentro.model.Doador;
@@ -42,7 +40,7 @@ public class Rank extends AppCompatActivity {
             int qtdBolsa = 0;
             for(Doador d: lista){
                 if(d.getNome().equals(s)){
-                    qtdBolsa += d.getDoacao().getBolsas().getQtdBolsa();
+                    qtdBolsa += d.getDoacao().getBolsa().getQtdBolsa();
                 }
             }
             nomeQtd.put(s,qtdBolsa);

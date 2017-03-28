@@ -8,15 +8,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.fabiano.hemocentro.HemocentroActivity;
 import com.example.fabiano.hemocentro.R;
 
 import java.util.List;
 
+import com.example.fabiano.hemocentro.model.Bolsa;
+import com.example.fabiano.hemocentro.model.Doacao;
 import com.example.fabiano.hemocentro.model.Doador;
-import com.example.fabiano.hemocentro.model.Hemocentro;
 
 /**
  * Created by fabiano on 24/03/17.
@@ -71,8 +70,11 @@ public class CustomAdapterDoador extends RecyclerView.Adapter<CustomAdapterDoado
                 popupMenu.getMenu().getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-
+                        Bolsa.delete(lista.get(position).getDoacao().getBolsa());
+                        Doacao.delete(lista.get(position).getDoacao());
                         Doador.delete(lista.get(position));
+                        lista.remove(lista.get(position));
+                        notifyItemRangeChanged(position,lista.size());
                         notifyItemRemoved(position);
 
                         return false;
