@@ -25,13 +25,10 @@ public class Rank extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rank);
 
-        for(String s : getNomeDoadores()){
-            nomesDoadores.add(s);
-        }
+        mapa = colapsar();
+        nomesDoadores = organizar(mapa);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerRank);
-        mapa = colapsar();
-        
         CustomAdapterRankDoador customAdapterRankDoador = new CustomAdapterRankDoador(this,mapa,nomesDoadores);
         recyclerView.setAdapter(customAdapterRankDoador);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -63,28 +60,28 @@ public class Rank extends AppCompatActivity {
 
         return aux;
     }
-    /*
-    public List organizar(Map map){
-        Set<String> aux = map.keySet();
-        List<String> aux1 = new ArrayList<>();
-        for (String s: aux){
-            Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
-        }
-        for(int i = 0; i < map.size();i++){
-            int maior = 0;
-            String tmp = "";
-            for(String s : aux){
-                if((Integer)map.get(s) >= maior){
-                    tmp = s;
-                    maior = (Integer)map.get(s);
+
+    public List organizar(Map<String,Integer> map){
+        Set<String> nome = getNomeDoadores();
+        List<String> organizada = new ArrayList<>();
+        int maior;
+        String aux;
+
+        for(int i = 0; i < map.size() ;i++){
+            maior = 0;
+            aux = "";
+            for(String s : nome){
+                if(map.get(s) >= maior){
+                    aux = s;
+                    maior = map.get(s);
                 }
             }
-            Toast.makeText(this,tmp,Toast.LENGTH_SHORT).show();
-            aux.remove(tmp);
-            aux1.add(tmp);
+
+            nome.remove(aux);
+            organizada.add(aux);
         }
 
-        return aux1;
+        return organizada;
     }
-    */
+
 }
