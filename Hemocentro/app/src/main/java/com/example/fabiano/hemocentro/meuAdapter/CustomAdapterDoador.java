@@ -10,11 +10,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fabiano.hemocentro.HemocentroActivity;
 import com.example.fabiano.hemocentro.R;
 
 import java.util.List;
 
 import com.example.fabiano.hemocentro.model.Doador;
+import com.example.fabiano.hemocentro.model.Hemocentro;
 
 /**
  * Created by fabiano on 24/03/17.
@@ -54,10 +56,10 @@ public class CustomAdapterDoador extends RecyclerView.Adapter<CustomAdapterDoado
         doador = lista.get(position);
         holder.texto1.setText("Nome: " + doador.getNome());
         holder.texto2.setText("Tipo Sanguineo: "+doador.getTipoSanguineo());
-        deletar(holder);
+        deletar(holder,position);
     }
 
-    public void deletar(ViewHolder holder){
+    public void deletar(ViewHolder holder, final int position){
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
 
             @Override
@@ -70,7 +72,8 @@ public class CustomAdapterDoador extends RecyclerView.Adapter<CustomAdapterDoado
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
 
-                        Toast.makeText(activity,"Test",Toast.LENGTH_LONG).show();
+                        Doador.delete(lista.get(position));
+                        notifyItemRemoved(position);
 
                         return false;
                     }

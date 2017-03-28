@@ -46,12 +46,10 @@ public class FormDoador extends AppCompatActivity {
             String stringTipoSaguineo = tipoSanguineo.getSelectedItem().toString();
             String stringTelefone = telefone.getText().toString();
             String stringHospitalDestino = hospitalDestino.getText().toString();
-            int intBolsa = 0;
-            try {
-                intBolsa = Integer.parseInt(qtdBolsas.getText().toString());
-            }catch (ClassCastException e){
-                Toast.makeText(this,"Numero de bolsas deve ser inteiro",Toast.LENGTH_LONG).show();
-            }
+            int intBolsa = Integer.parseInt(qtdBolsas.getText().toString());
+        
+            Toast.makeText(this,"Numero de bolsas deve ser inteiro",Toast.LENGTH_LONG).show();
+
 
             Hemocentro hemocentro = Hemocentro.getInstance();
             doador = hemocentro.cadastroDoador(stringNome,genero,stringTipoSaguineo,stringTelefone,intBolsa,stringHospitalDestino);

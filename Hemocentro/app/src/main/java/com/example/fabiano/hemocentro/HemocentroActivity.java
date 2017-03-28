@@ -33,6 +33,7 @@ public class HemocentroActivity extends AppCompatActivity {
         CustomAdapterDoador adapter = new CustomAdapterDoador(this,lista);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     @Override

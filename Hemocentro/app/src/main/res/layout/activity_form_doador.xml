@@ -129,7 +129,8 @@
         <EditText
             android:id="@+id/bolsa"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
     </LinearLayout>
 
     <LinearLayout
@@ -143,7 +144,8 @@
         <EditText
             android:id="@+id/telefone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="phone"/>
     </LinearLayout>
 
 
