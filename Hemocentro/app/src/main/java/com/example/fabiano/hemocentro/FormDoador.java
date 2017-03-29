@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.fabiano.hemocentro.meuAdapter.CustomAdapterDoador;
 import com.example.fabiano.hemocentro.model.Doador;
 import com.example.fabiano.hemocentro.model.Hemocentro;
 

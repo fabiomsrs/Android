@@ -1,10 +1,13 @@
 package com.example.fabiano.hemocentro;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.fabiano.hemocentro.model.Bolsa;
+import com.example.fabiano.hemocentro.model.SaidaDeBolsas;
 
 import java.util.List;
 
@@ -51,6 +54,7 @@ public class BancoDeSangue extends AppCompatActivity {
 
     public int bolsa(String tipo){
         List<Bolsa> bolsa = Bolsa.listAll(Bolsa.class);
+        List<SaidaDeBolsas> saidaDeBolsas = SaidaDeBolsas.listAll(SaidaDeBolsas.class);
         int qtd = 0;
 
         for(Bolsa b: bolsa){
@@ -58,7 +62,17 @@ public class BancoDeSangue extends AppCompatActivity {
                 qtd+=b.getQtdBolsa();
         }
 
+        for(SaidaDeBolsas aux : saidaDeBolsas){
+            if(aux.getTipoSanguineo().equals(tipo))
+                qtd-=aux.getQtdSaida();
+        }
+
 
         return qtd;
+    }
+
+    public void floatButtonListener(View v){
+        Intent intent = new Intent(this,SaidaDeBolsa.class);
+        startActivity(intent);
     }
 }

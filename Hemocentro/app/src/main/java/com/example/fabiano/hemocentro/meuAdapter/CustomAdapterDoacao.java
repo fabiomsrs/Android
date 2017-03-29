@@ -21,11 +21,11 @@ import com.example.fabiano.hemocentro.model.Doador;
  * Created by fabiano on 24/03/17.
  */
 
-public class CustomAdapterDoador extends RecyclerView.Adapter<CustomAdapterDoador.ViewHolder> {
+public class CustomAdapterDoacao extends RecyclerView.Adapter<CustomAdapterDoacao.ViewHolder> {
     private Doador doador;
     private List<Doador> lista;
     private Activity activity;
-    public CustomAdapterDoador(Activity activity, List lista){
+    public CustomAdapterDoacao(Activity activity, List lista){
         this.lista = lista;
         this.activity = activity;
     }
@@ -44,7 +44,7 @@ public class CustomAdapterDoador extends RecyclerView.Adapter<CustomAdapterDoado
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_adapter,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_adapter_doacao,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
 
         return viewHolder;
@@ -53,10 +53,22 @@ public class CustomAdapterDoador extends RecyclerView.Adapter<CustomAdapterDoado
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         doador = lista.get(position);
-        holder.texto1.setText("Nome: " + doador.getNome());
+        holder.texto1.setText("Doador: " + doador.getNome());
         holder.texto2.setText("Tipo Sanguineo: "+doador.getTipoSanguineo());
         deletar(holder,position);
+        //verInformacoes(holder,position);
+
     }
+    /*|
+    public void verInformacoes(ViewHolder holder, int position){
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+    }*/
 
     public void deletar(ViewHolder holder, final int position){
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {

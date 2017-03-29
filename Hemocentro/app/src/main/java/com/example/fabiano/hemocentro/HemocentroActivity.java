@@ -10,11 +10,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.List;
 
-import com.example.fabiano.hemocentro.meuAdapter.CustomAdapterDoador;
+import com.example.fabiano.hemocentro.meuAdapter.CustomAdapterDoacao;
 import com.example.fabiano.hemocentro.model.Bolsa;
 import com.example.fabiano.hemocentro.model.Doador;
 
@@ -29,7 +28,7 @@ public class HemocentroActivity extends AppCompatActivity {
         lista = Doador.listAll(Doador.class);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler);
-        CustomAdapterDoador adapter = new CustomAdapterDoador(this,lista);
+        CustomAdapterDoacao adapter = new CustomAdapterDoacao(this,lista);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
