@@ -53,8 +53,13 @@ public class SaidaDeBolsa extends AppCompatActivity {
     }
 
     public void onConfirmClick(View v){
-        saidaDeBolsas.save();
-        finish();
+        if(saidaDeBolsas == null)
+            finish();
+        else{
+            saidaDeBolsas.save();
+            finish();
+        }
+
     }
 
     public int bolsa(String tipo){
