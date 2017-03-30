@@ -19,6 +19,7 @@ import java.util.Set;
 public class Rank extends AppCompatActivity {
     private Map<String,Integer> mapa;
     private List<String> nomesDoadores = new ArrayList<>();
+    private RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,7 @@ public class Rank extends AppCompatActivity {
         mapa = colapsar();
         nomesDoadores = organizar(mapa);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerRank);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerRank);
         CustomAdapterRankDoador customAdapterRankDoador = new CustomAdapterRankDoador(this,mapa,nomesDoadores);
         recyclerView.setAdapter(customAdapterRankDoador);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

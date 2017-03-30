@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="24sp"
-            android:text="Doacao"/>
+            android:text="Doador"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -32,7 +32,13 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:padding="8dp"/>
+            <Button
+                android:id="@+id/addDoacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="add"/>
         </LinearLayout>
+
     </LinearLayout>
 
 

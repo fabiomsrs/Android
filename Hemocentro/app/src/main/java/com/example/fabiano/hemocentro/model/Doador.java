@@ -3,6 +3,7 @@ package com.example.fabiano.hemocentro.model;
 import com.orm.SugarRecord;
 import com.orm.dsl.Ignore;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class Doador extends SugarRecord{
@@ -11,8 +12,6 @@ public class Doador extends SugarRecord{
 	private String tipoSanguineo;
 	private String telefone;
 
-	@Ignore
-	private List<Doacao> doacao = getDoacao();
 
 	public Doador(){
 	}
@@ -57,7 +56,7 @@ public class Doador extends SugarRecord{
 	}
 
 
-	public List<Doacao> getDoacao(){
+	public List<Doacao> getDoacoes(){
         return Doacao.find(Doacao.class,"doador = ?",String.valueOf(getId()));
 	}
 

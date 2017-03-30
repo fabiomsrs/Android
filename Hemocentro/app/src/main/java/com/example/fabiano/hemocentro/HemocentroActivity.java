@@ -13,23 +13,22 @@ import android.view.View;
 
 import java.util.List;
 
-import com.example.fabiano.hemocentro.meuAdapter.CustomAdapterDoacao;
+import com.example.fabiano.hemocentro.meuAdapter.CustomAdapterDoador;
 import com.example.fabiano.hemocentro.model.Bolsa;
-import com.example.fabiano.hemocentro.model.Doacao;
 import com.example.fabiano.hemocentro.model.Doador;
 
 public class HemocentroActivity extends AppCompatActivity {
     private FloatingActionButton button;
-    private List<Doacao> lista;
+    private List<Doador> lista;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hemocentro);
         button = (FloatingActionButton) findViewById(R.id.floatbutton);
-        lista = Doacao.listAll(Doacao.class);
+        lista = Doador.listAll(Doador.class);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler);
-        CustomAdapterDoacao adapter = new CustomAdapterDoacao(this,lista);
+        CustomAdapterDoador adapter = new CustomAdapterDoador(this,lista);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

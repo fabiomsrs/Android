@@ -11,8 +11,7 @@ public class Doacao extends SugarRecord{
 	private Calendar data;
 	@Ignore
 	private DestinoDoacao destinoDoacao;
-	@Ignore
-	private List<Bolsa> bolsa = getBolsa();
+
 
 	public Doacao(){
 		data = Calendar.getInstance();
@@ -24,7 +23,7 @@ public class Doacao extends SugarRecord{
 	}
 
 	public void setDoador(Doador doador){
-        doador = doador;
+        this.doador = doador;
 	}
 
 	public Doador getDoador() {

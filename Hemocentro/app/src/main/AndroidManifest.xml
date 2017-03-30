@@ -19,7 +19,7 @@
         </activity>
         <activity
             android:name=".FormDoador"
-            android:label="Formulario"
+            android:label="Formulario Doador"
             android:parentActivityName=".HemocentroActivity" />
         <activity
             android:name=".BancoDeSangue"
@@ -29,9 +29,13 @@
             android:name=".Rank"
             android:label="Rank de Doadores"
             android:parentActivityName=".HemocentroActivity" />
-        <activity android:name=".SaidaDeBolsa"
+        <activity
+            android:name=".SaidaDeBolsa"
             android:label="Saida de Bolsas"
-            android:parentActivityName=".BancoDeSangue"/>
+            android:parentActivityName=".BancoDeSangue" />
+        <activity android:name=".FormDoacao"
+            android:label="Formulario Doacao"
+            android:parentActivityName=".HemocentroActivity"/>
     </application>
 
 </manifest>

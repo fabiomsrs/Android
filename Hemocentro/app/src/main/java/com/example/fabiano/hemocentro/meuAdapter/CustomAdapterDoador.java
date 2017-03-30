@@ -1,14 +1,17 @@
 package com.example.fabiano.hemocentro.meuAdapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.fabiano.hemocentro.FormDoacao;
 import com.example.fabiano.hemocentro.R;
 
 import java.util.List;
@@ -21,11 +24,11 @@ import com.example.fabiano.hemocentro.model.Doador;
  * Created by fabiano on 24/03/17.
  */
 
-public class CustomAdapterDoacao extends RecyclerView.Adapter<CustomAdapterDoacao.ViewHolder> {
-    private Doacao doacao;
-    private List<Doacao> lista;
+public class CustomAdapterDoador extends RecyclerView.Adapter<CustomAdapterDoador.ViewHolder> {
+    private Doador doador;
+    private List<Doador> lista;
     private Activity activity;
-    public CustomAdapterDoacao(Activity activity, List lista){
+    public CustomAdapterDoador(Activity activity, List lista){
         this.lista = lista;
         this.activity = activity;
     }
@@ -33,18 +36,19 @@ public class CustomAdapterDoacao extends RecyclerView.Adapter<CustomAdapterDoaca
     public static class ViewHolder extends RecyclerView.ViewHolder {
         protected TextView texto1;
         protected TextView texto2;
-
+        protected Button button;
         public ViewHolder(View itemView) {
             super(itemView);
             texto1 = (TextView) itemView.findViewById(R.id.textAdapter1);
             texto2 = (TextView) itemView.findViewById(R.id.textAdapter2);
+            button = (Button) itemView.findViewById(R.id.addDoacao);
         }
 
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_adapter_doacao,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_adapter_doador,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
 
         return viewHolder;
@@ -52,9 +56,17 @@ public class CustomAdapterDoacao extends RecyclerView.Adapter<CustomAdapterDoaca
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        doacao = lista.get(position);
-        holder.texto1.setText("Doador: " + doacao.getDoador().getNome());
-        holder.texto2.setText("Tipo Sanguineo: "+doacao.getDoador().getTipoSanguineo());
+        doador = lista.get(position);
+        holder.texto1.setText("Nome: " + doador.getNome());
+        holder.texto2.setText("Tipo Sanguineo: "+doador.getTipoSanguineo());
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, FormDoacao.class);
+                intent.putExtra("doador",doador.getNome());
+                activity.startActivity(intent);
+            }
+        });
         deletar(holder,position);
         //verInformacoes(holder,position);
 
@@ -82,9 +94,14 @@ public class CustomAdapterDoacao extends RecyclerView.Adapter<CustomAdapterDoaca
                 popupMenu.getMenu().getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        Doador.delete(lista.get(position).getDoador());
-                        Bolsa.deleteAll(Bolsa.class,"doacao = ?",String.valueOf(lista.get(position).getId()));
-                        Doacao.delete(doacao);
+                        Doador.delete(lista.get(position));
+
+                        for(Doacao d : lista.get(position).getDoacoes()){
+                            Bolsa.deleteAll(Bolsa.class,"doacao = ?",String.valueOf(d.getId()));
+                            Doacao.delete(d);
+                        }
+
+
                         lista.remove(lista.get(position));
                         notifyItemRangeChanged(position,lista.size());
                         notifyItemRemoved(position);

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
-    tools:context="com.example.fabiano.hemocentro.FormDoador">
+    tools:context="com.example.fabiano.hemocentro.FormDoacao">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,13 +15,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nome:"/>
-        <EditText
-            android:id="@+id/nome"
+            android:text="Quantidade de Bolsas:"/>
+        <com.gildaswise.horizontalcounter.HorizontalCounter
+            android:id="@+id/qtdBolsas"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:stepValue="1"
+            app:minValue="0"
+            app:maxValue="2"
+            app:initialValue="1"
+            app:textSize="12sp"/>
     </LinearLayout>
-
 
     <LinearLayout
         android:orientation="horizontal"
@@ -32,61 +36,43 @@
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sexo:"/>
+            android:text="Deseja destinar doacao:"/>
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <RadioButton
-                android:id="@+id/radioFeminino"
+                android:id="@+id/radioSim"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Feminino"
-                android:layout_margin="8dp"
-                android:onClick="setGenero"/>
+                android:text="Sim"
+                android:onClick="onSimClick"/>
             <RadioButton
-                android:id="@+id/radioMasculino"
+                android:id="@+id/radioNao"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Masculino"
-                android:layout_margin="8dp"
-                android:onClick="setGenero"/>
+                android:text="Nao"
+                android:onClick="onNaoClick"
+                />
         </RadioGroup>
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/conditionalField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
-        <TextView
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tipo Sanguineo:"/>
-        <Spinner
-            android:id="@+id/spinnerTipoSanguineo"
-            android:entries="@array/tipoSanguineo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:visibility="gone">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Telefone:"/>
+            android:text="Hospital do destino:"/>
         <EditText
-            android:id="@+id/telefone"
+            android:id="@+id/hospitalDestino"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="phone"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
-
-
 
 
 </LinearLayout>

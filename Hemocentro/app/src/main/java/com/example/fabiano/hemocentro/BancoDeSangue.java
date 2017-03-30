@@ -81,6 +81,7 @@ public class BancoDeSangue extends AppCompatActivity {
         return qtd;
     }
 
+
     public void floatButtonListener(View v){
         Intent intent = new Intent(this,SaidaDeBolsa.class);
         startActivity(intent);

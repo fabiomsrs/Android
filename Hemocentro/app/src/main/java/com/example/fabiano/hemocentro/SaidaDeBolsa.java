@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fabiano.hemocentro.model.Bolsa;
 import com.example.fabiano.hemocentro.model.SaidaDeBolsas;
@@ -57,7 +58,7 @@ public class SaidaDeBolsa extends AppCompatActivity {
             finish();
         else{
             saidaDeBolsas.save();
-            finish();
+            Toast.makeText(this,"Operação feita",Toast.LENGTH_SHORT).show();
         }
 
     }

@@ -15,12 +15,12 @@ import com.example.fabiano.hemocentro.model.Doacao;
 import com.example.fabiano.hemocentro.model.Doador;
 import com.example.fabiano.hemocentro.model.Hemocentro;
 
+import java.util.List;
+
 public class FormDoador extends AppCompatActivity {
     private EditText nome;
-    private EditText hospitalDestino;
     private EditText telefone;
     private Spinner tipoSanguineo;
-    private EditText qtdBolsas;
     private String genero;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +28,9 @@ public class FormDoador extends AppCompatActivity {
         setContentView(R.layout.activity_form_doador);
 
         nome = (EditText) findViewById(R.id.nome);
-        hospitalDestino = (EditText) findViewById(R.id.hospitalDestino);
         telefone = (EditText) findViewById(R.id.telefone);
         tipoSanguineo = (Spinner) findViewById(R.id.spinnerTipoSanguineo);
-        qtdBolsas = (EditText) findViewById(R.id.bolsa);
+
     }
 
     @Override
@@ -42,29 +41,20 @@ public class FormDoador extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        List<Doador> doadores = Doador.listAll(Doador.class);
         Doacao doacao;
         if(item.getItemId() == R.id.save){
             String stringNome = nome.getText().toString();
             String stringTipoSaguineo = tipoSanguineo.getSelectedItem().toString();
             String stringTelefone = telefone.getText().toString();
-            String stringHospitalDestino = hospitalDestino.getText().toString();
-            int intBolsa = Integer.parseInt(qtdBolsas.getText().toString());
 
 
-            doacao = new Doacao();
             Doador doador = new Doador(stringNome,genero,stringTipoSaguineo,stringTelefone);
+
             doador.save();
-            
-            doacao.setDoador(doador);
-            doacao.save();
-
-            for(int i = 0; i < intBolsa; i++){
-                Bolsa bolsa = new Bolsa();
-                bolsa.setDoacao(doacao);
-                bolsa.save();
-            }
-
             Toast.makeText(this,"Cadastrado com sucesso",Toast.LENGTH_LONG).show();
+
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -76,15 +66,6 @@ public class FormDoador extends AppCompatActivity {
         else{
             this.genero = "Masculino";
         }
-    }
-
-    public void onSimClick(View v){
-        LinearLayout conditional = (LinearLayout) findViewById(R.id.conditionalField);
-        conditional.setVisibility(View.VISIBLE);
-    }
-    public void onNaoClick(View v){
-        LinearLayout conditional = (LinearLayout) findViewById(R.id.conditionalField);
-        conditional.setVisibility(View.GONE);
     }
 
 }
