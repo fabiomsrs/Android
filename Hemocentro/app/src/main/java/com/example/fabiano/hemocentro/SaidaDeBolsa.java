@@ -76,7 +76,7 @@ public class SaidaDeBolsa extends AppCompatActivity {
     }
 
     public int getQtdBolsasJaLiberadas(String tipo){
-        List<SaidaDeBolsas> saida = Bolsa.listAll(SaidaDeBolsas.class);
+        List<SaidaDeBolsas> saida = SaidaDeBolsas.listAll(SaidaDeBolsas.class);
         int qtd = 0;
         for(SaidaDeBolsas aux : saida){
             if(aux.getTipoSanguineo().equals(tipo)){

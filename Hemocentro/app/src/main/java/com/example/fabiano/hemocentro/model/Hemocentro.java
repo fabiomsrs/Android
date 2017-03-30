@@ -24,12 +24,7 @@ public class Hemocentro {
 	public String getNome() {
 		return nome;
 	}
-	
-	public void cadastroDoacao(String nome,String sexo, String tipoSanguineo,String telefone,int qtdBolsas,String destino){
-		doacao = new Doacao();
-		doacao.setDoador(nome,sexo,tipoSanguineo,telefone);
 
-	}
 
 
 

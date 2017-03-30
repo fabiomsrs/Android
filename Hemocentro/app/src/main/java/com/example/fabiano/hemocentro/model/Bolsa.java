@@ -16,7 +16,6 @@ public class Bolsa extends SugarRecord {
 
 	public void setDoacao(Doacao doacao){
 		this.doacao = doacao;
-		doacao.save();
 	}
 
 	public Doacao getDoacao() {

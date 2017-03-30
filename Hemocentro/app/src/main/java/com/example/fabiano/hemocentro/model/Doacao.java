@@ -23,9 +23,8 @@ public class Doacao extends SugarRecord{
 		destinoDoacao = new DestinoDoacao(nome);
 	}
 
-	public void setDoador(String nome, String sexo, String tipoSanguineo, String telefone){
-        doador = new Doador(nome,sexo,tipoSanguineo,sexo);
-		doador.save();
+	public void setDoador(Doador doador){
+        doador = doador;
 	}
 
 	public Doador getDoador() {

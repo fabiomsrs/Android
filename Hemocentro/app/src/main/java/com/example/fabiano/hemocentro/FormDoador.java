@@ -52,9 +52,10 @@ public class FormDoador extends AppCompatActivity {
 
 
             doacao = new Doacao();
-
-
-            doacao.setDoador(stringNome,genero,stringTipoSaguineo,stringTelefone);
+            Doador doador = new Doador(stringNome,genero,stringTipoSaguineo,stringTelefone);
+            doador.save();
+            
+            doacao.setDoador(doador);
             doacao.save();
 
             for(int i = 0; i < intBolsa; i++){
