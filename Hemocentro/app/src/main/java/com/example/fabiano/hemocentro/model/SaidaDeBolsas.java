@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class SaidaDeBolsas extends SugarRecord {
-	private int qtdSaida;
+	private int qtdBolsas;
 	private String tipoSanguinero;
 	private Calendar data;
 
@@ -26,10 +26,10 @@ public class SaidaDeBolsas extends SugarRecord {
 	}
 
 	public int getQtdSaida() {
-		return qtdSaida;
+		return qtdBolsas;
 	}
 
-	public void setQtdSaida(int qtdSaida) {
-		this.qtdSaida = qtdSaida;
+	public void setQtdSaida(int qtdBolsas) {
+		this.qtdBolsas = qtdBolsas;
 	}
 }

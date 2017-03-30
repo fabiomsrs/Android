@@ -12,20 +12,28 @@ import com.example.fabiano.hemocentro.model.SaidaDeBolsas;
 import java.util.List;
 
 public class BancoDeSangue extends AppCompatActivity {
+    int bolsaAPositivo;
+    int bolsaANegativo;
+    int bolsaBPositivo;
+    int bolsaBNegativo;
+    int bolsaABPositivo;
+    int bolsaABNegativo;
+    int bolsaOPositivo;
+    int bolsaONegativo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_banco_de_sangue);
 
-        int bolsaAPositivo = bolsa("A+");
-        int bolsaANegativo = bolsa("A-");
-        int bolsaBPositivo = bolsa("B+");
-        int bolsaBNegativo = bolsa("B-");
-        int bolsaABPositivo = bolsa("AB+");
-        int bolsaABNegativo = bolsa("AB-");
-        int bolsaOPositivo = bolsa("O+");
-        int bolsaONegativo = bolsa("O-");
+        bolsaAPositivo = bolsa("A+");
+        bolsaANegativo = bolsa("A-");
+        bolsaBPositivo = bolsa("B+");
+        bolsaBNegativo = bolsa("B-");
+        bolsaABPositivo = bolsa("AB+");
+        bolsaABNegativo = bolsa("AB-");
+        bolsaOPositivo = bolsa("O+");
+        bolsaONegativo = bolsa("O-");
 
         TextView textAPositivo = (TextView) findViewById(R.id.aPositivo);
         textAPositivo.setText("Quantidade: " + bolsaAPositivo);
@@ -52,6 +60,8 @@ public class BancoDeSangue extends AppCompatActivity {
         textONegativo.setText("Quantidade: " + bolsaONegativo);
     }
 
+
+
     public int bolsa(String tipo){
         List<Bolsa> bolsa = Bolsa.listAll(Bolsa.class);
         List<SaidaDeBolsas> saidaDeBolsas = SaidaDeBolsas.listAll(SaidaDeBolsas.class);
@@ -59,7 +69,7 @@ public class BancoDeSangue extends AppCompatActivity {
 
         for(Bolsa b: bolsa){
             if(b.getTipoSanguineo().equals(tipo))
-                qtd+=b.getQtdBolsa();
+                qtd++;
         }
 
         for(SaidaDeBolsas aux : saidaDeBolsas){

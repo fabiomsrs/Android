@@ -22,8 +22,8 @@ import com.example.fabiano.hemocentro.model.Doador;
  */
 
 public class CustomAdapterDoacao extends RecyclerView.Adapter<CustomAdapterDoacao.ViewHolder> {
-    private Doador doador;
-    private List<Doador> lista;
+    private Doacao doacao;
+    private List<Doacao> lista;
     private Activity activity;
     public CustomAdapterDoacao(Activity activity, List lista){
         this.lista = lista;
@@ -52,9 +52,9 @@ public class CustomAdapterDoacao extends RecyclerView.Adapter<CustomAdapterDoaca
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        doador = lista.get(position);
-        holder.texto1.setText("Doador: " + doador.getNome());
-        holder.texto2.setText("Tipo Sanguineo: "+doador.getTipoSanguineo());
+        doacao = lista.get(position);
+        holder.texto1.setText("Doador: " + doacao.getDoador().getNome());
+        holder.texto2.setText("Tipo Sanguineo: "+doacao.getDoador().getTipoSanguineo());
         deletar(holder,position);
         //verInformacoes(holder,position);
 
@@ -82,9 +82,9 @@ public class CustomAdapterDoacao extends RecyclerView.Adapter<CustomAdapterDoaca
                 popupMenu.getMenu().getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        Bolsa.delete(lista.get(position).getDoacao().getBolsa());
-                        Doacao.delete(lista.get(position).getDoacao());
-                        Doador.delete(lista.get(position));
+                        Doador.delete(lista.get(position).getDoador());
+                        Bolsa.deleteAll(Bolsa.class,"doacao = ?",String.valueOf(lista.get(position).getId()));
+                        Doacao.delete(doacao);
                         lista.remove(lista.get(position));
                         notifyItemRangeChanged(position,lista.size());
                         notifyItemRemoved(position);

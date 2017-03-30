@@ -68,7 +68,7 @@ public class SaidaDeBolsa extends AppCompatActivity {
 
         for(Bolsa b: bolsa){
             if(b.getTipoSanguineo().equals(tipo))
-                qtd+=b.getQtdBolsa();
+                qtd++;
         }
 
 

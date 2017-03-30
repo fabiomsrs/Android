@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.fabiano.hemocentro.meuAdapter.CustomAdapterRankDoador;
+import com.example.fabiano.hemocentro.model.Bolsa;
 import com.example.fabiano.hemocentro.model.Doador;
 
 import java.util.ArrayList;
@@ -33,18 +34,19 @@ public class Rank extends AppCompatActivity {
     }
 
     public Map<String,Integer> colapsar(){
-        List<Doador> lista = Doador.listAll(Doador.class);
+        Set<String> doadores = getNomeDoadores();
+        List<Bolsa> bolsa = Bolsa.listAll(Bolsa.class);
         Map<String,Integer> nomeQtd = new HashMap<String, Integer>();
 
-        for(String s : getNomeDoadores()){
-            int qtdBolsa = 0;
-            for(Doador d: lista){
-                if(d.getNome().equals(s)){
-                    qtdBolsa += d.getDoacao().getBolsa().getQtdBolsa();
-                }
+        for(String d: doadores){
+            int qtd = 0;
+            for(Bolsa b: bolsa){
+                if(b.getDoacao().getDoador().getNome().equals(d))
+                        qtd++;
             }
-            nomeQtd.put(s,qtdBolsa);
+            nomeQtd.put(d,qtd);
         }
+
         return nomeQtd;
     }
 

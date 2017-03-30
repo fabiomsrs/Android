@@ -3,31 +3,23 @@ package com.example.fabiano.hemocentro.model;
 import com.orm.SugarRecord;
 
 public class Bolsa extends SugarRecord {
-	private int qtdBolsa = 0;
-	private String tipoSanguineo;
+	private Doacao doacao;
+
 	
 	public Bolsa(){
 		
 	}
-	public Bolsa(int bolsas, String tipoSanguineo){
-		this.tipoSanguineo = tipoSanguineo;
-		addBolsa(bolsas);
-	}
 
 	public String getTipoSanguineo(){
-		return this.tipoSanguineo;
+		return this.doacao.getDoador().getTipoSanguineo();
 	}
-	
-	public int getQtdBolsa() {
-		return qtdBolsa;
+
+	public void setDoacao(Doacao doacao){
+		this.doacao = doacao;
+		doacao.save();
 	}
-	
-	public void liberarBolsa(int bolsas){
-		qtdBolsa -= bolsas;
+
+	public Doacao getDoacao() {
+		return doacao;
 	}
-	
-	public void addBolsa(int bolsas){
-		qtdBolsa += bolsas;
-	}
-	
 }

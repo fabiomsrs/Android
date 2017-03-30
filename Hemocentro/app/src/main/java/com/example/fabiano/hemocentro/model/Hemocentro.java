@@ -3,7 +3,7 @@ package com.example.fabiano.hemocentro.model;
 public class Hemocentro {
 	private static Hemocentro hemocentro = null;
 	private String nome;	
-	private Doador doador;
+	private Doacao doacao;
 	private SaidaDeBolsas saidaDeBolsas;
 
 	public static Hemocentro getInstance(){
@@ -25,18 +25,13 @@ public class Hemocentro {
 		return nome;
 	}
 	
-	public Doador cadastroDoador(String nome,String sexo, String tipoSanguineo,String telefone,int qtdBolsas,String destino){
-		doador = new Doador(nome,sexo,tipoSanguineo,telefone);
-		if(destino.equals(""))
-			doador.setDoacao(qtdBolsas);
-		else
-			doador.setDoacao(qtdBolsas,destino);
-		return doador;
+	public void cadastroDoacao(String nome,String sexo, String tipoSanguineo,String telefone,int qtdBolsas,String destino){
+		doacao = new Doacao();
+		doacao.setDoador(nome,sexo,tipoSanguineo,telefone);
+
 	}
 
-    public Doador getDoador() {
-        return doador;
-    }
+
 
 	/*
 	public void setSaidaDeBolsas(int bolsas,String tipoSanguineo){

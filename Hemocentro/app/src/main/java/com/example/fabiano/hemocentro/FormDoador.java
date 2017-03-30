@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.fabiano.hemocentro.model.Bolsa;
+import com.example.fabiano.hemocentro.model.Doacao;
 import com.example.fabiano.hemocentro.model.Doador;
 import com.example.fabiano.hemocentro.model.Hemocentro;
 
@@ -40,7 +42,7 @@ public class FormDoador extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Doador doador;
+        Doacao doacao;
         if(item.getItemId() == R.id.save){
             String stringNome = nome.getText().toString();
             String stringTipoSaguineo = tipoSanguineo.getSelectedItem().toString();
@@ -49,10 +51,17 @@ public class FormDoador extends AppCompatActivity {
             int intBolsa = Integer.parseInt(qtdBolsas.getText().toString());
 
 
+            doacao = new Doacao();
 
-            Hemocentro hemocentro = Hemocentro.getInstance();
-            doador = hemocentro.cadastroDoador(stringNome,genero,stringTipoSaguineo,stringTelefone,intBolsa,stringHospitalDestino);
-            doador.save();
+
+            doacao.setDoador(stringNome,genero,stringTipoSaguineo,stringTelefone);
+            doacao.save();
+
+            for(int i = 0; i < intBolsa; i++){
+                Bolsa bolsa = new Bolsa();
+                bolsa.setDoacao(doacao);
+                bolsa.save();
+            }
 
             Toast.makeText(this,"Cadastrado com sucesso",Toast.LENGTH_LONG).show();
         }

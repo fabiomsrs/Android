@@ -1,14 +1,19 @@
 package com.example.fabiano.hemocentro.model;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class Doacao extends SugarRecord{
-	private DestinoDoacao destinoDoacao;
+	private Doador doador;
 	private Calendar data;
-	private Bolsa bolsa;
-	
+	@Ignore
+	private DestinoDoacao destinoDoacao;
+	@Ignore
+	private List<Bolsa> bolsa = getBolsa();
+
 	public Doacao(){
 		data = Calendar.getInstance();
 	}
@@ -17,15 +22,22 @@ public class Doacao extends SugarRecord{
 		data = Calendar.getInstance();
 		destinoDoacao = new DestinoDoacao(nome);
 	}
-	
-	public void setBolsas(int qtdBolsa, String tipoSanguineo){
-		bolsa = new Bolsa(qtdBolsa, tipoSanguineo);
-		bolsa.save();
+
+	public void setDoador(String nome, String sexo, String tipoSanguineo, String telefone){
+        doador = new Doador(nome,sexo,tipoSanguineo,sexo);
+		doador.save();
 	}
 
-	public Bolsa getBolsa(){
-		return this.bolsa;
+	public Doador getDoador() {
+		return doador;
 	}
+
+
+	public List<Bolsa> getBolsa(){
+
+		return Bolsa.find(Bolsa.class,"doacao = ?",String.valueOf(getId()));
+	}
+
 	public Calendar getData(){
 		data = Calendar.getInstance();
 		return data;
