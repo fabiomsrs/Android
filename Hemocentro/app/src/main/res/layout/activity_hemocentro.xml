@@ -14,7 +14,7 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatbutton"
-        android:src="@drawable/ic_plus_circle_black_18dp"
+        android:src="@drawable/ic_account_plus_black_18dp"
         android:layout_margin="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
