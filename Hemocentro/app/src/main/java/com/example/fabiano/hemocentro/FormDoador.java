@@ -42,18 +42,32 @@ public class FormDoador extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         List<Doador> doadores = Doador.listAll(Doador.class);
-        Doacao doacao;
+        boolean aux = true;
         if(item.getItemId() == R.id.save){
             String stringNome = nome.getText().toString();
             String stringTipoSaguineo = tipoSanguineo.getSelectedItem().toString();
             String stringTelefone = telefone.getText().toString();
+            if(stringNome.isEmpty()){
+                Toast.makeText(this,"Preencha os campos Vazio",Toast.LENGTH_LONG).show();
+            }
+            else {
 
 
-            Doador doador = new Doador(stringNome,genero,stringTipoSaguineo,stringTelefone);
+                Doador doador = new Doador(stringNome, genero, stringTipoSaguineo, stringTelefone);
+                for (Doador d : doadores) {
+                    if (d.getNome().equals(doador.getNome()) && d.getTipoSanguineo().equals(doador.getTipoSanguineo())) {
+                        aux = false;
+                    }
+                }
 
-            doador.save();
-            Toast.makeText(this,"Cadastrado com sucesso",Toast.LENGTH_LONG).show();
+                if (aux) {
+                    doador.save();
+                    Toast.makeText(this, "Cadastrado com sucesso", Toast.LENGTH_LONG).show();
+                }
+                else
+                    Toast.makeText(this, "Doador ja cadastrado", Toast.LENGTH_LONG).show();
 
+            }
 
         }
         return super.onOptionsItemSelected(item);

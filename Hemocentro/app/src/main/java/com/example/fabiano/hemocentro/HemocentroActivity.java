@@ -51,6 +51,10 @@ public class HemocentroActivity extends AppCompatActivity {
             Intent intent = new Intent(this,Rank.class);
             startActivity(intent);
         }
+        else {
+            Intent intent = new Intent(this,CampanhaActivity.class);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }

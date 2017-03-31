@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.fabiano.hemocentro.R;
 import com.example.fabiano.hemocentro.model.Bolsa;
@@ -59,7 +60,7 @@ public class FormDoacao extends AppCompatActivity {
 
 
             doacao.save();
-
+           Toast.makeText(this,"Doacao feita com sucesso",Toast.LENGTH_SHORT);
             for(int i = 0;i < horizontalCounter.getCurrentValue(); i++){
                 Bolsa bolsa = new Bolsa();
                 bolsa.setDoacao(doacao);

@@ -2,6 +2,8 @@ package com.example.fabiano.hemocentro;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -53,15 +55,28 @@ public class SaidaDeBolsa extends AppCompatActivity {
         });
     }
 
-    public void onConfirmClick(View v){
-        if(saidaDeBolsas == null)
-            finish();
-        else{
-            saidaDeBolsas.save();
-            Toast.makeText(this,"Operação feita",Toast.LENGTH_SHORT).show();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_form,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.save){
+            if(saidaDeBolsas == null)
+                finish();
+            else{
+                saidaDeBolsas.save();
+                Toast.makeText(this,"Operação feita",Toast.LENGTH_SHORT).show();
+            }
+
         }
 
+        return super.onOptionsItemSelected(item);
     }
+
+
 
     public int bolsa(String tipo){
         List<Bolsa> bolsa = Bolsa.listAll(Bolsa.class);

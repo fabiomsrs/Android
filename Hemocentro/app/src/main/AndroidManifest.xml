@@ -33,9 +33,20 @@
             android:name=".SaidaDeBolsa"
             android:label="Saida de Bolsas"
             android:parentActivityName=".BancoDeSangue" />
-        <activity android:name=".FormDoacao"
+        <activity
+            android:name=".FormDoacao"
             android:label="Formulario Doacao"
-            android:parentActivityName=".HemocentroActivity"/>
+            android:parentActivityName=".HemocentroActivity" />
+        <activity
+            android:name=".CampanhaActivity"
+            android:label="Campanhas"
+            android:parentActivityName=".HemocentroActivity" />
+        <activity android:name=".FormCampanha"
+            android:label="Formulario Campanha"
+            android:parentActivityName=".CampanhaActivity"/>
+        <activity android:name=".CampanhaListaDoador"
+            android:label="Doadores"
+            android:parentActivityName=".CampanhaActivity"></activity>
     </application>
 
 </manifest>
